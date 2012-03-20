@@ -35,7 +35,7 @@ public class Core extends AbstractCore {
         Plugin httpPlugin = Bukkit.getPluginManager().getPlugin("BukkitHTTP");
         if (httpPlugin != null) {
             HTTPCore http = (HTTPCore) httpPlugin;
-            thisHTTP = new TerminalHTTP("terminal", "The Terminal", "TheTerminal/web", true);
+            thisHTTP = new TerminalHTTP("terminal", "The Terminal", "TheTerminal/web", false);
             thisHTTP.setOwn404Page(true);
             http.registerPlugin(thisHTTP);
             return true;
