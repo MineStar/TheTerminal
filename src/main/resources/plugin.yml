@@ -1,3 +1,4 @@
 name: TheTerminal
-main: de.minestar.theterminal.Core.Core
+main: de.minestar.theterminal.core.Core
 version: ${pom.version}
+depend: [BukkitHTTP]
