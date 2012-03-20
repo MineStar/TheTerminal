@@ -11,7 +11,6 @@ public class TemplateFinder {
             // tplIndex.execTemplate(page, event);
             page.replaceText("%USERNAME%", event.getCookieParam("Username"));
         }
-
         return page;
     }
 }

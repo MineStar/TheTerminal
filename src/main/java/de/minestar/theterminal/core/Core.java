@@ -18,16 +18,22 @@ public class Core extends AbstractCore {
     private static HTTPPlugin thisHTTP;
 
     public Core() {
-        NAME = "The Terminal";
+        this("The Terminal");
+    }
+
+    public Core(String name) {
+        NAME = name;
     }
 
     @Override
     protected boolean commonEnable() {
+
+        // CREATE DIR
+        this.getDataFolder().mkdirs();
+
+        // GET BUKKIT HTTP
         Plugin httpPlugin = Bukkit.getPluginManager().getPlugin("BukkitHTTP");
         if (httpPlugin != null) {
-            if (!httpPlugin.isEnabled()) {
-                Bukkit.getPluginManager().enablePlugin(httpPlugin);
-            }
             HTTPCore http = (HTTPCore) httpPlugin;
             thisHTTP = new TerminalHTTP("terminal", "The Terminal", "TheTerminal/web", true);
             thisHTTP.setOwn404Page(true);
