@@ -1,5 +1,7 @@
 package de.minestar.theterminal.http.pages;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,7 +14,6 @@ import com.bukkit.gemo.BukkitHTTP.Page;
 
 import de.minestar.theterminal.core.Core;
 import de.minestar.theterminal.utils.ChatEvent;
-import de.minestar.theterminal.utils.EventType;
 
 public class tplGetChat extends TemplatePage {
 
@@ -46,17 +47,15 @@ public class tplGetChat extends TemplatePage {
         ChatEvent thisEvent;
         for (int i = chatList.size() - 1; i >= 0; i--) {
             thisEvent = chatList.get(i);
-            // CREATE MESSAGE
-            String message = thisEvent.getDisplayName();
-            if (thisEvent.getEventType() != EventType.JOINQUIT) {
-                message += ": ";
-            }
-            message += thisEvent.getMessage();
-
             // CREATE JSON-OBJECT
             JSONObject thisObj = new JSONObject();
             thisObj.put("time", getTime(thisEvent.getTimestamp()));
-            thisObj.put("message", message);
+            thisObj.put("player", thisEvent.getDisplayName());
+            try {
+                thisObj.put("message", URLEncoder.encode(thisEvent.getMessage(), "UTF-8"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
             jsonArray.add(thisObj);
         }
 

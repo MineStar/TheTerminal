@@ -1,5 +1,8 @@
 package de.minestar.theterminal.http.pages;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -17,6 +20,11 @@ public class tplDoChat extends TemplatePage {
             if (event.postParameter.containsKey("user") && event.postParameter.containsKey("text")) {
                 String playerName = event.postParameter.get("user");
                 String message = event.postParameter.get("text");
+                try {
+                    message = URLDecoder.decode(message, "UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                };
                 Core.getInstance().getChatManager().addWebChat(playerName, message);
                 sendMessageToAll(ChatColor.GRAY + "[WEB] " + playerName + ChatColor.WHITE + ": " + message);
             }
