@@ -1,4 +1,4 @@
 name: TheTerminal
 main: de.minestar.theterminal.core.Core
 version: ${pom.version}
-depend: [BukkitHTTP]
+depend: [BukkitHTTP, MineStarLibrary]

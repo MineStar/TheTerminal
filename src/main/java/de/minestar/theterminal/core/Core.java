@@ -1,5 +1,7 @@
 package de.minestar.theterminal.core;
 
+import java.io.File;
+
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.Plugin;
 
@@ -22,25 +24,29 @@ public class Core extends AbstractCore {
     }
 
     public Core(String name) {
-        NAME = name;
+        super(name);
+        Core.NAME = name;
     }
 
     @Override
     protected boolean commonEnable() {
-
         // CREATE DIR
         this.getDataFolder().mkdirs();
+
+        // CREATE WEBFOLDER
+        File webFolder = new File(this.getDataFolder(), "web");
+        webFolder.mkdirs();
 
         // GET BUKKIT HTTP
         Plugin httpPlugin = Bukkit.getPluginManager().getPlugin("BukkitHTTP");
         if (httpPlugin != null) {
             HTTPCore http = (HTTPCore) httpPlugin;
             thisHTTP = new TerminalHTTP("terminal", "The Terminal", "TheTerminal/web", false);
-            thisHTTP.setOwn404Page(true);
+            thisHTTP.setOwn404Page(false);
             http.registerPlugin(thisHTTP);
             return true;
         } else {
-            ConsoleUtils.printError(NAME, "BukkitHTTP not found!");
+            ConsoleUtils.printError(Core.NAME, "BukkitHTTP not found!");
             return false;
         }
     }
