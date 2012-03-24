@@ -11,7 +11,7 @@ public class ChatManager {
     private List<ChatEvent> chatList = Collections.synchronizedList(new ArrayList<ChatEvent>());
 
     public void addGameChat(String playerName, String displayName, String message) {
-        chatList.add(new ChatEvent(playerName, displayName, message, EventType.GAME_CHAT));
+        chatList.add(new ChatEvent(playerName, displayName, message.replace("\"", "'"), EventType.GAME_CHAT));
     }
 
     public void addJoin(String playerName) {
@@ -27,7 +27,7 @@ public class ChatManager {
     }
 
     public void addWebChat(String playerName, String message) {
-        chatList.add(new ChatEvent("[WEB] " + playerName, "[WEB] " + playerName, message, EventType.WEB_CHAT));
+        chatList.add(new ChatEvent("[WEB] " + playerName, "[WEB] " + playerName, message.replace("\"", "'"), EventType.WEB_CHAT));
     }
 
     public ArrayList<ChatEvent> getMessagesAfter(long time) {
