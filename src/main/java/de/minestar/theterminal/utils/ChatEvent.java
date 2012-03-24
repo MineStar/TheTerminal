@@ -42,11 +42,11 @@ public class ChatEvent {
     }
 
     public boolean isYounger(long time) {
-        return this.timestamp >= time;
+        return this.timestamp > time;
     }
 
     public boolean isOlder(long time) {
-        return this.timestamp <= time;
+        return this.timestamp < time;
     }
 
     /**
