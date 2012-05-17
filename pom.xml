@@ -28,12 +28,12 @@
 		<dependency>
 			<groupId>de.minestar</groupId>
 			<artifactId>minestarlibrary</artifactId>
-			<version>1.6.3</version>
+			<version>1.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.bukkit</groupId>
 			<artifactId>bukkit</artifactId>
-			<version>1.2.3-R0.2</version>
+			<version>1.2.5-R1.3</version>
 		</dependency>
 		<dependency>
 			<groupId>de.minestar</groupId>
