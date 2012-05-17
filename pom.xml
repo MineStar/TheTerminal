@@ -43,7 +43,7 @@
 		<dependency>
 			<groupId>de.minestar</groupId>
 			<artifactId>BukkitHTTP</artifactId>
-			<version>0.50</version>
+			<version>0.51</version>
 		</dependency>
 	</dependencies>
 </project>
